@@ -3,13 +3,12 @@ const { collection } = require('./user.model');
 const { songCollection } = require('./user.model');
 const { playlistCollection } = require('./user.model');
 const router = express.Router();
-const path = require('path')
+const path = require('path');
 
+router.use(express.static(path.join(__dirname, '../Mash/artifacts')));
 
-router.use(express.static(path.join(__dirname, '../Mash/artifacts')))
-
-router.post('/login', async (req, res) =>{
-    const {Username, Password } = req.body;
+router.post('/login', async (req, res) => {
+    const { Username, Password } = req.body;
     console.log(req.body)
     try {
         // Check if user exists
@@ -32,11 +31,11 @@ router.post('/login', async (req, res) =>{
 router.get('/search', async (req, res) => {
     const query = req.query.q;
 
-    try{
+    try {
         const songs = await songCollection.find({
             $or: [
-                {Song: {$regex: query, $options: 'i'}},
-                {Artist:{$regex: query, $options: 'i'} }
+                { Song: { $regex: query, $options: 'i' } },
+                { Artist: { $regex: query, $options: 'i' } }
             ]
         });
         res.json(songs);
@@ -44,28 +43,37 @@ router.get('/search', async (req, res) => {
         console.error('Error during search:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-    console.log("Song has been found")
+    console.log("Song has been found");
 });
 
 router.post('/resetpassword', async (req, res) => {
-    const {Username, Password, newPassword} = req.body;
-    try{
-        const submission = await collection.findOne({Username});
+    // Extract username, new password, and confirmed password from request body
+    const { Username, newPassword, confirmPassword } = req.body;
 
-    if (!submission || submission.Password !== Password){
-        return res.status(400).send('Invalid username or old password.');
-    }
+    try {
+        // Find the user with the provided username
+        const submission = await collection.findOne({ Username });
 
-    submission.Password = newPassword;
+        // If no user found, return 400 Bad Request
+        if (!submission) {
+            return res.status(400).send('User not found.');
+        }
 
-    await submission.save();
+        // Check if the new password matches the confirmed password
+        if (newPassword !== confirmPassword) {
+            return res.status(400).send('Passwords do not match.');
+        }
 
-    res.send('Password reset successfully.');
-    } catch(error) {
+        // Update the user's password with the new one
+        submission.Password = newPassword;
+        await submission.save();
+
+        // Return success message
+        res.send('Password reset successfully.');
+    } catch (error) {
         console.error('Error resetting password:', error);
         res.status(500).send('An error occurred while resetting password.');
     }
-    
 });
 
 module.exports = router;
