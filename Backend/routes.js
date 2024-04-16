@@ -5,6 +5,7 @@ const { playlistCollection } = require('./user.model');
 const router = express.Router();
 const path = require('path')
 
+
 router.use(express.static(path.join(__dirname, '../Mash/artifacts')))
 
 router.post('/login', async (req, res) =>{
@@ -44,6 +45,27 @@ router.get('/search', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
     console.log("Song has been found")
+});
+
+router.post('/resetpassword', async (req, res) => {
+    const {Username, Password, newPassword} = req.body;
+    try{
+        const submission = await collection.findOne({Username});
+
+    if (!submission || submission.Password !== Password){
+        return res.status(400).send('Invalid username or old password.');
+    }
+
+    submission.Password = newPassword;
+
+    await submission.save();
+
+    res.send('Password reset successfully.');
+    } catch(error) {
+        console.error('Error resetting password:', error);
+        res.status(500).send('An error occurred while resetting password.');
+    }
+    
 });
 
 module.exports = router;
