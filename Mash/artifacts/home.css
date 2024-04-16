@@ -1,0 +1,86 @@
+/* Optional CSS styling */
+body{
+    padding-top: 1em;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    margin: 0;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    min-height: 100vh;
+    background: #eed6d6;
+    background-image: url('vibe.jpg');
+    background-size: cover;
+    color: #333;
+}
+.search-container {
+    margin-top: 20px;
+}
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+}
+.search-button {
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.search-button:hover {
+    background-color: #0056b3;
+}
+.logout-button{
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    /* Optional: transform for better alignment */
+    transform: translate(-50%, 0);
+}
+.logout-button:hover {
+    background-color: #0056b3;
+}
+
+/* Center content */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Song info container */
+.song-info {
+    text-align: center;
+    color: #000000;
+    
+}
+
+/* Center the playlist button at the top-middle of the screen */
+.playlist-button {
+    position: fixed;
+    top: 20px; /* Adjust the top position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.playlist-button:hover {
+    background-color: #0056b3;
+}
+

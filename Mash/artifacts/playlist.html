@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist</title>
+    <link rel="stylesheet" href="playlist.css">
+
+</head>
+<body>
+    <h1>My Playlist</h1>
+    <ul id="playlist"></ul>
+    <button id="clearPlaylist">Clear Playlist</button>
+
+    <div id="songPlayerContainer"> <!-- Container for song info and media player -->
+        <div id="songInfo"></div>
+        <audio controls autoplay id="audioPlayer" style="display: none;">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <a href="home.html"><button class="home-button">Home</button></a>
+
+    <script src="scripts/playlist.js" defer></script>
+</body>
+</html>

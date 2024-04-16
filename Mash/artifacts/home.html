@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Mash</title>
+</head>
+<body>
+    <h1>Welcome to the Mash Homepage</h1>
+    <!-- <p id="loginData"></p> -->
+    <a href="index.html"><button class="logout-button">Logout</button></a>
+    <div class="search-container">
+        <form id="searchForm">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for songs...">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+    <div id="songInfoContainer" class="centered">
+        <div id="songInfo" class="song-info"></div>
+        <button id="addToPlaylistBtn" style="display: none;">Add to Playlist</button>
+    </div>
+
+    <a href="playlist.html"><button class="playlist-button">Playlist</button></a>
+    
+    <script src="scripts/home.js" defer></script>
+</body>
+</html>
