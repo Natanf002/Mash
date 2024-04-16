@@ -4,9 +4,9 @@ const userSchema = new mongoose.Schema({
     Username: { type: String, required: true },
     Password: { type: String, required: true },
     Email: { type: String, required: true }
-});
+}, {collection: 'UserLoginInfo'});
 
-const collection = new mongoose.model('User', userSchema, 'UserLoginInfo');
+const collection = new mongoose.model('UserLoginInfo', userSchema, 'UserLoginInfo');
 
 const songSchema = new mongoose.Schema({
     Song: { type: String, required: true },
@@ -19,6 +19,7 @@ const playlistSchema = new mongoose.Schema({
     Song: { type: String, required: true },
     Username: { type: String, required: true }
 })
-
 const playlistCollection = new mongoose.model('Playlist', playlistSchema, 'Playlist')
+
+
 module.exports = {collection, songCollection, playlistCollection};
